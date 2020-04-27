@@ -2,26 +2,26 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Login to docker hub
-      uses: actions-hub/docker/login@master
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Login to docker hub
+        uses: actions-hub/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build :latest
-      run: docker build -t ${GITHUB_REPOSITORY}:$(date +%s) .
+      - name: Build :latest
+        run: docker build -t davidbernal/gcloud-dart:$(date +%s) .
 
-    - name: Push to docker hub :latest
-      uses: actions-hub/docker@master
-      with:
-        args: push ${GITHUB_REPOSITORY}:latest
+      - name: Push to docker hub :latest
+        uses: actions-hub/docker@master
+        with:
+          args: push davidbernal/gcloud-dart:latest
