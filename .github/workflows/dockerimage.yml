@@ -19,9 +19,9 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build :latest
-        run: docker build -t davidbernal/gcloud-dart:$(date +%s) .
+        run: docker build -t davidbernal/gcloud-dart .
 
       - name: Push to docker hub :latest
         uses: actions-hub/docker@master
         with:
-          args: push davidbernal/gcloud-dart:latest
+          args: push davidbernal/gcloud-dart
