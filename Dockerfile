@@ -1,4 +1,4 @@
-FROM google/dart:2.7
+FROM google/dart:2.8
 
 # Install dependencies
 RUN apt-get update -y
